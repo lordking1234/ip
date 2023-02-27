@@ -523,17 +523,6 @@ fetch('https://api.geniidata.com/lordking/api/v1/datasource/12576/results?limit=
 
 
 
- 
-
-
-  
-
-
-
-
-
-
-
 
 d3.csv('data1.csv').then(function(datapoints){
   let selectedProps = datapoints.reduce((acc, curr) => {
