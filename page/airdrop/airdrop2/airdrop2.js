@@ -1,256 +1,363 @@
 function increment(labelValue) { 
-  if (Math.abs(Number(labelValue)) >= 1.0e+9)
+    if (Math.abs(Number(labelValue)) >= 1.0e+9)
 return (Math.abs(Number(labelValue)) / 1.0e+9).toFixed(2) + " B"
-    if (Math.abs(Number(labelValue)) >= 1.0e+6)
+      if (Math.abs(Number(labelValue)) >= 1.0e+6)
 return (Math.abs(Number(labelValue)) / 1.0e+6).toFixed(2) + " M"
-    if (Math.abs(Number(labelValue)) >= 1.0e+3)
+      if (Math.abs(Number(labelValue)) >= 1.0e+3)
 return (Math.abs(Number(labelValue) / 1.0e+3).toFixed(2)) + " K"
 }
 // closing  converting function
 
 
-//
-
-
-document.getElementById("first-box").innerHTML = increment(111809)
-document.getElementById("fourth-box").innerHTML = increment(111721)
-document.getElementById("sixth-box").innerHTML = increment(110235)
-document.getElementById("third-box").innerHTML = increment(21394500)
-document.getElementById("fifth-box").innerHTML = (150)
-document.getElementById("second-box").innerHTML = increment(20076150)
-document.getElementById("seventh-box").innerHTML = (300)
-document.getElementById("eighth-box").innerHTML = (191)
-document.getElementById("ninth-box").innerHTML = (150)
 
 
 
+fetch('https://api.flipsidecrypto.com/api/v2/queries/46d51bdd-ce5f-4e46-a0c8-b868b3059406/data/latest').then(res=>res.json()).then(data=>{
+  const newData = data.reduce((t,i)=>{
+  return {...t,
+    claimer:[...t.claimer,i.CLAIMER],
+    op:[...t.op,i.OP] , 
+    avg:[...t.avg,i.AVG]  ,
+    median:[...t.median,i.MEDIAN] 
+
+  }
+
+},{claimer:[]
+  ,op:[],avg:[],median:[]
+})
+
+document.getElementById("first-box").innerHTML = increment(data[0].CLAIMER)
+document.getElementById("second-box").innerHTML = increment(data[0].OP)
+document.getElementById("third-box").innerHTML = (Math.floor(data[0].MEDIAN)*10)/10
+document.getElementById("fourth-box").innerHTML = (Math.floor(data[0].AVG)*10)/10
+
+
+})
 
 
 
 
 
 
- 
+
+
+   
 chart1 = {
-tooltip: {
-  trigger: 'axis',
-  axisPointer: {
-    type: 'shadow' 
-  }
-},
-legend: {
-  left: 'left' 
-},
-grid: {
-  left: '3%',
-  right: '4%',
-  bottom: '3%',
-  containLabel: true
-},
-xAxis: {
-  type: 'value'
-},
-yAxis: {
-  type: 'category',
-  data: []
-},
-series: [
-  {
-    name: 'Eligible Claimer',
-    type: 'bar',
-    stack: 'total',
-    color:['#FD4592'] ,
-    label: {
-      show: true
-    },
-    emphasis: {
-      focus: 'series'
-    },
-    data:[0,110235,0,0]
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow' 
+    }
   },
-  {
-    name: 'Remaining Claimer',
-    type: 'bar',
-    stack: 'total',
-    color:['#ED93B9'] ,
-    label: {
-      show: true
-    },
-    emphasis: {
-      focus: 'series'
-    },
-    data:[0,0,0,0]
+  legend: {
+    left: 'left' 
   },
-  {
-    name: 'Total Claimer',
-    type: 'bar',
-    stack: 'total',
-    color:['#F0F23A'] ,
-    label: {
-      show: true
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value'
+  },
+  yAxis: {
+    type: 'category',
+    data: []
+  },
+  series: [
+    {
+      name: 'Total OP Airdrop',
+      type: 'bar',
+      stack: 'total',
+      color:['#FD4592'] ,
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data:[0,0,815100000]
     },
-    emphasis: {
-      focus: 'series'
+    {
+      name: '#1 OP Airdroped',
+      type: 'bar',
+      stack: 'total',
+      color:['#ED93B9'] ,
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data:[0,214700000]
     },
-    data:[0,0,0,111721]
-  }
-]
+    {
+      name: '#2 OP Airdroped',
+      type: 'bar',
+      stack: 'total',
+      color:['#F0F23A'] ,
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data:[11740000,0]
+    }
+  ]
 };
 echarts.init(document.getElementById('chart1')).setOption(chart1);
 
 
 
+fetch('https://api.flipsidecrypto.com/api/v2/queries/a0d9fadd-6833-4fc8-9c1e-1065592b3c20/data/latest').then(res=>res.json()).then(data=>{
 
+  let selectedProps = data.reduce((acc, curr) => {
+    let { WALLETS:value,TYPE:name } = curr;
+    return [...acc, { value,name }];
+  }, []);
+  
 chart2 = {
+  
+  title: {
+    text: '',
+    subtext: '',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'right'
+  },
+  series: [
+    {
+      name: '',
+      type: 'pie',
+      radius: ['20%','80%'],
+      
 
-title: {
-  text: '',
-  subtext: '',
-  left: 'center'
-},
-tooltip: {
-  trigger: 'item'
-},
-legend: {
-  orient: 'horizontal',
-  left: 'left'
-},
-series: [
-  {
-    name: '',
-    type: 'pie',
-    radius: ['30%','70'],
-    
-
-          color: [
-      '#37A2DA',
-      '#32C5E9',
-      '#67E0E3',
-      '#9FE6B8',
-      '#FFDB5C',
-      '#ff9f7f',
-      '#fb7293'],
-    data: [{value:80988 , name :'150 Aptos' },{value:30821 , name :'300 Aptos' }],
-    emphasis: {
-      itemStyle: {
-        shadowBlur: 10,
-        shadowOffsetX: 0,
-        shadowColor: 'rgba(0, 0, 0, 0.5)'
+            color: [
+        '#37A2DA',
+        '#32C5E9',
+        '#67E0E3',
+        '#9FE6B8',
+        '#FFDB5C',
+        '#ff9f7f',
+        '#fb7293'],
+      data: selectedProps,
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
       }
     }
-  }
-]
+  ]
 }
-echarts.init(document.getElementById('chart2')).setOption(chart2);
+ echarts.init(document.getElementById('chart2')).setOption(chart2);
+})
+ 
 
 
-
-
-d3.csv('data.csv').then(function(datapoints){
-const news = datapoints.reduce((t,i)=>{
-return {...t,dates:[...t.dates,i.date],
-claimerss:[...t.claimerss,i.claimers],
-aptoss:[...t.aptoss,i.aptos],
-cum_aptoss:[...t.cum_aptoss,i.cum_aptos],
-cum_claimerss:[...t.cum_claimerss,i.cum_claimers]}
-
-},{dates:[],claimerss:[],aptoss:[],cum_aptoss:[],cum_claimerss:[]})
-
-
-chart4 = {
-title: {
-  text: ''
-},
-tooltip: {
-  trigger: 'axis'
-},
-legend: {
-  data: [ 'claimers', 'cum claimer']
-},
-grid: {
-  left: '3%',
-  right: '4%',
-  bottom: '3%',
-  containLabel: true
-},
-toolbox: {
-  feature: {
-    saveAsImage: {}
-  }
-},
-xAxis: {
-  type: 'category',
-  boundaryGap: false,
-  data: news.dates
-},
-yAxis: {
-  type: 'value'
-},
-series: [
+const op = [
   {
-    name: 'Claimers',
-    type: 'line',
-    //stack: 'Total',
-    data: news.claimerss
+    value: 6.62,
+    name: 'TPS',
+    title: {
+      offsetCenter: ['-70%', '125%']
+    },
+    detail: {
+      offsetCenter: ['-70%', '95%']
+    }
   },
   {
-    name: 'Cumulative Claimer',
-    type: 'line',
-    data: news.cum_claimerss
+    value: 397.4,
+    name: 'TPM',
+    title: {
+      offsetCenter: ['0%', '125%']
+    },
+    detail: {
+      offsetCenter: ['0%', '95%']
+    }
+  },
+  {
+    value: 23844,
+    name: 'TPH',
+    title: {
+      offsetCenter: ['70%', '125%']
+    },
+    detail: {
+      offsetCenter: ['70%', '95%']
+    }
   }
-]
+];
+chart3 = {
+  series: [
+    {
+      type: 'gauge',
+      anchor: {
+        show: true,
+        showAbove: true,
+        size: 18,
+        itemStyle: {
+          color: '#FAC810'
+        }
+      },
+      pointer: {
+        icon: 'path://M2.9,0.7L2.9,0.7c1.4,0,2.6,1.2,2.6,2.6v115c0,1.4-1.2,2.6-2.6,2.6l0,0c-1.4,0-2.6-1.2-2.6-2.6V3.3C0.3,1.9,1.4,0.7,2.9,0.7z',
+        width: 8,
+        length: '60%',
+        offsetCenter: [0, '8%']
+      },
+      progress: {
+        show: true,
+        overlap: true,
+        roundCap: true
+      },
+      axisLine: {
+        roundCap: true
+      },
+      data: op,
+      title: {
+        fontSize: 14
+      },
+      detail: {
+        width: 40,
+        height: 14,
+        fontSize: 14,
+        color: '#fff',
+        backgroundColor: 'inherit',
+        borderRadius: 3,
+        formatter: '{value}'
+      }
+    }
+  ]
 };
+
+   echarts.init(document.getElementById('chart3')).setOption(chart3);
+
+
+
+
+   const gaugeData = [
+    {
+      value: 98.5,
+      name: 'Success rate',
+      title: {
+        offsetCenter: ['0%', '80%']
+      },
+      detail: {
+        offsetCenter: ['0%', '110%']
+      }
+    }
+  ];
+  chart4 = {
+    series: [
+      {
+        type: 'gauge',
+        anchor: {
+          show: true,
+          showAbove: true,
+          size: 18,
+          itemStyle: {
+            color: '#FAC810'
+          }
+        },
+        pointer: {
+          icon: 'path://M2.9,0.7L2.9,0.7c1.4,0,2.6,1.2,2.6,2.6v115c0,1.4-1.2,2.6-2.6,2.6l0,0c-1.4,0-2.6-1.2-2.6-2.6V3.3C0.3,1.9,1.4,0.7,2.9,0.7z',
+          width: 8,
+          length: '60%',
+          offsetCenter: [0, '8%']
+        },
+        progress: {
+          show: true,
+          overlap: true,
+          roundCap: true
+        },
+        axisLine: {
+          roundCap: true
+        },
+        data: gaugeData,
+        title: {
+          fontSize: 14
+        },
+        detail: {
+          width: 40,
+          height: 14,
+          fontSize: 14,
+          color: '#fff',
+          backgroundColor: 'inherit',
+          borderRadius: 3,
+          formatter: '{value}'
+        }
+      }
+    ]
+  };
+  
 echarts.init(document.getElementById('chart4')).setOption(chart4);
 
 
 
 
-
-
+const op1 = [
+  {
+    value: 2.63,
+    name: 'Avg Trans Per Block',
+    title: {
+      offsetCenter: ['0%', '90%']
+    },
+    detail: {
+      offsetCenter: ['0%', '120%']
+    }
+  }
+];
 chart5 = {
-title: {
-  text: ''
-},
-tooltip: {
-  trigger: 'axis'
-},
-legend: {
-  data: [ 'Aptos Claimed', 'Cum Aptos Claimed']
-},
-grid: {
-  left: '3%',
-  right: '4%',
-  bottom: '3%',
-  containLabel: true
-},
-toolbox: {
-  feature: {
-    saveAsImage: {}
-  }
-},
-xAxis: {
-  type: 'category',
-  boundaryGap: false,
-  data: news.dates
-},
-yAxis: {
-  type: 'value'
-},
-series: [
-  {
-    name: 'Aptos Claimed',
-    type: 'line',
-    //stack: 'Total',
-    data: news.aptoss
-  },
-  {
-    name: 'Cum Aptos Claimed',
-    type: 'line',
-    data: news.cum_aptoss
-  }
-]
+  series: [
+    {
+      type: 'gauge',
+      anchor: {
+        show: true,
+        showAbove: true,
+        size: 18,
+        itemStyle: {
+          color: '#FAC810'
+        }
+      },
+      pointer: {
+        icon: 'path://M2.9,0.7L2.9,0.7c1.4,0,2.6,1.2,2.6,2.6v115c0,1.4-1.2,2.6-2.6,2.6l0,0c-1.4,0-2.6-1.2-2.6-2.6V3.3C0.3,1.9,1.4,0.7,2.9,0.7z',
+        width: 8,
+        length: '60%',
+        offsetCenter: [0, '8%']
+      },
+      progress: {
+        show: true,
+        overlap: true,
+        roundCap: true
+      },
+      axisLine: {
+        roundCap: true
+      },
+      data: op1,
+      title: {
+        fontSize: 14
+      },
+      detail: {
+        width: 40,
+        height: 14,
+        fontSize: 14,
+        color: '#fff',
+        backgroundColor: 'inherit',
+        borderRadius: 3,
+        formatter: '{value}'
+      }
+    }
+  ]
 };
+
 echarts.init(document.getElementById('chart5')).setOption(chart5);
 
-})
 
