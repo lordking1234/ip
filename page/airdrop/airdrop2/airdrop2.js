@@ -11,25 +11,38 @@ return (Math.abs(Number(labelValue) / 1.0e+3).toFixed(2)) + " K"
 
 
 
+//-----------------------------------------------------------------------------------------
 
 
-document.getElementById("first-box").innerHTML = increment(93669480)
-document.getElementById("second-box").innerHTML = increment(35702637)
-document.getElementById("third-box").innerHTML = increment(2479697)
-document.getElementById("fourth-box").innerHTML = (0.4905)
-document.getElementById("fifth-box").innerHTML = increment(89809.61 )
-document.getElementById("sixth-box").innerHTML = (0.0040)
-document.getElementById("seventh-box").innerHTML = (1351)
-document.getElementById("8th-box").innerHTML = (0.0040)
+fetch('https://api.geniidata.com/lordking/api/v1/datasource/12577/results?limit=20&offset=0', {
+    method: 'GET', 
+    headers: {
+        'Content-Type': 'application/json',
+        'api-key': 'a94fdce0-b66c-11ed-9d24-019c684cbdd6'
+    }
+})
+.then(response => response.json())
+.then(data =>{
+
+
+document.getElementById("first-box").innerHTML = increment(data.data.list[0].trxs)
+document.getElementById("second-box").innerHTML = increment(data.data.list[0].Blocks)
+document.getElementById("third-box").innerHTML = increment(data.data.list[0].wallet)
+document.getElementById("fourth-box").innerHTML = increment(data.data.list[0].aptos)
+document.getElementById("fifth-box").innerHTML = increment(data.data.list[0].Fee )
+document.getElementById("sixth-box").innerHTML = (Math.floor((data.data.list[0].Avg_Fee)*1000)/1000)
+document.getElementById("seventh-box").innerHTML = (data.data.list[0].Contracts)
+document.getElementById("8th-box").innerHTML = (Math.floor((data.data.list[0].time_between_two_block)*100)/100)
 
 
 
 
+        //-----------------------------------------------------------------------------------------
 
 
-const op = [
+const tpm = [
   {
-    value: 6.62,
+    value: (Math.floor((data.data.list[0].TPS)*100)/100),
     name: 'TPS',
     title: {
       offsetCenter: ['-70%', '125%']
@@ -39,7 +52,7 @@ const op = [
     }
   },
   {
-    value: 397.4,
+    value: (Math.floor((data.data.list[0].TPM)*100)/100),
     name: 'TPM',
     title: {
       offsetCenter: ['0%', '125%']
@@ -49,8 +62,8 @@ const op = [
     }
   },
   {
-    value: 23844,
-    name: 'TPH',
+    value: (Math.abs(Number((data.data.list[0].TPH)) / 1.0e+3).toFixed(2)) ,
+    name: 'TPH (K)',
     title: {
       offsetCenter: ['70%', '125%']
     },
@@ -59,6 +72,9 @@ const op = [
     }
   }
 ];
+
+
+
 chart3 = {
   series: [
     {
@@ -85,7 +101,7 @@ chart3 = {
       axisLine: {
         roundCap: true
       },
-      data: op,
+      data: tpm,
       title: {
         fontSize: 14
       },
@@ -106,11 +122,14 @@ chart3 = {
 
 
 
+        //-----------------------------------------------------------------------------------------
+
+
 
    const gaugeData = [
     {
-      value: 98.5,
-      name: 'Success rate',
+      value: (Math.floor((data.data.list[0].Success_rate)*100)/100),
+      name: 'Success Rate',
       title: {
         offsetCenter: ['0%', '80%']
       },
@@ -166,10 +185,12 @@ echarts.init(document.getElementById('chart4')).setOption(chart4);
 
 
 
+        //-----------------------------------------------------------------------------------------
+
 
 const op1 = [
   {
-    value: 2.63,
+    value: (Math.floor((data.data.list[0].Avg_Trans_Per_Block)*100)/100),
     name: 'Avg Trans Per Block',
     title: {
       offsetCenter: ['0%', '90%']
@@ -223,6 +244,21 @@ chart5 = {
 };
 
 echarts.init(document.getElementById('chart5')).setOption(chart5);
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -609,3 +645,162 @@ d3.csv('data5.csv').then(function(datapoints){
         };
   echarts.init(document.getElementById('chart11')).setOption(chart11);
   })
+  
+  
+  
+  d3.csv('data7.csv').then(function(datapoints){
+//console.log(datapoints)
+
+//put our selected data in seperate array and called them arr1 and arr2 
+    let results = datapoints.reduce((acc, curr) => {
+    // # change : just change status name (names) and count (value) here  => push(curr.profit) and   push(curr.cost)     
+    acc.profits.push(curr.event_name); 
+    acc.costs.push(curr.Total_Volume);
+    return acc;
+    }, {profits: [], costs: []});
+
+let arr2 = results.profits;
+let arr1 = results.costs;
+//console.log(arr1)
+// ; console.log(arr2) ;
+
+
+let result = arr2.reduce((acc, curr, i) => {
+  let value = arr1[i];
+  if (!acc[curr]) {
+    acc[curr] = Number(value);
+  } else {
+    acc[curr] += Number(value);
+  }
+  return acc;
+}, {});
+
+let finalResult = Object.keys(result).map(key => {
+  return {
+    value: result[key],
+    name : key
+  }
+})
+
+
+     
+    
+chart33 = {
+  title: {
+    text: '',
+    subtext: '',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  series: [
+    {
+      name: '',
+      type: 'pie',
+      radius: ['30%','70'],
+      
+
+            color: [
+        '#37A2DA',
+        '#32C5E9',
+        '#67E0E3',
+        '#9FE6B8',
+        '#FFDB5C',
+        '#ff9f7f',
+        '#fb7293'],
+      data: finalResult,
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ]
+};
+   echarts.init(document.getElementById('chart33')).setOption(chart33);
+   
+    })
+    
+    
+    
+    
+    
+    
+    d3.csv('data7.csv').then(function(datapoints){
+//console.log(datapoints)
+
+//put our selected data in seperate array and called them arr1 and arr2 
+    let results = datapoints.reduce((acc, curr) => {
+    // # change : just change status name (names) and count (value) here  => push(curr.profit) and   push(curr.cost)     
+    acc.profits.push(curr.event_name); 
+    acc.costs.push(curr.trxs);
+    return acc;
+    }, {profits: [], costs: []});
+
+let arr2 = results.profits;
+let arr1 = results.costs;
+//console.log(arr1)
+// ; console.log(arr2) ;
+
+
+let result = arr2.reduce((acc, curr, i) => {
+  let value = arr1[i];
+  if (!acc[curr]) {
+    acc[curr] = Number(value);
+  } else {
+    acc[curr] += Number(value);
+  }
+  return acc;
+}, {});
+
+let finalResult = Object.keys(result).map(key => {
+  return {
+    value: result[key],
+    name : key
+  }
+})
+
+
+     
+    
+chart44 = {
+  title: {
+    text: '',
+    subtext: '',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  series: [
+    {
+      name: '',
+      type: 'pie',
+      radius: ['30%','70'],
+      
+
+            color: [
+        '#37A2DA',
+        '#32C5E9',
+        '#67E0E3',
+        '#9FE6B8',
+        '#FFDB5C',
+        '#ff9f7f',
+        '#fb7293'],
+      data: finalResult,
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ]
+};
+   echarts.init(document.getElementById('chart44')).setOption(chart44);
+   
+    })
