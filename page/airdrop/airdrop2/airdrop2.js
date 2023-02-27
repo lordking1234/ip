@@ -12,155 +12,19 @@ return (Math.abs(Number(labelValue) / 1.0e+3).toFixed(2)) + " K"
 
 
 
-fetch('https://api.flipsidecrypto.com/api/v2/queries/46d51bdd-ce5f-4e46-a0c8-b868b3059406/data/latest').then(res=>res.json()).then(data=>{
-  const newData = data.reduce((t,i)=>{
-  return {...t,
-    claimer:[...t.claimer,i.CLAIMER],
-    op:[...t.op,i.OP] , 
-    avg:[...t.avg,i.AVG]  ,
-    median:[...t.median,i.MEDIAN] 
 
-  }
-
-},{claimer:[]
-  ,op:[],avg:[],median:[]
-})
-
-document.getElementById("first-box").innerHTML = increment(data[0].CLAIMER)
-document.getElementById("second-box").innerHTML = increment(data[0].OP)
-document.getElementById("third-box").innerHTML = (Math.floor(data[0].MEDIAN)*10)/10
-document.getElementById("fourth-box").innerHTML = (Math.floor(data[0].AVG)*10)/10
-
-
-})
+document.getElementById("first-box").innerHTML = increment(93669480)
+document.getElementById("second-box").innerHTML = increment(35702637)
+document.getElementById("third-box").innerHTML = increment(2479697)
+document.getElementById("fourth-box").innerHTML = (0.4905)
+document.getElementById("fifth-box").innerHTML = increment(89809.61 )
+document.getElementById("sixth-box").innerHTML = (0.0040)
+document.getElementById("seventh-box").innerHTML = (1351)
+document.getElementById("8th-box").innerHTML = (0.0040)
 
 
 
 
-
-
-
-
-   
-chart1 = {
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'shadow' 
-    }
-  },
-  legend: {
-    left: 'left' 
-  },
-  grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true
-  },
-  xAxis: {
-    type: 'value'
-  },
-  yAxis: {
-    type: 'category',
-    data: []
-  },
-  series: [
-    {
-      name: 'Total OP Airdrop',
-      type: 'bar',
-      stack: 'total',
-      color:['#FD4592'] ,
-      label: {
-        show: true
-      },
-      emphasis: {
-        focus: 'series'
-      },
-      data:[0,0,815100000]
-    },
-    {
-      name: '#1 OP Airdroped',
-      type: 'bar',
-      stack: 'total',
-      color:['#ED93B9'] ,
-      label: {
-        show: true
-      },
-      emphasis: {
-        focus: 'series'
-      },
-      data:[0,214700000]
-    },
-    {
-      name: '#2 OP Airdroped',
-      type: 'bar',
-      stack: 'total',
-      color:['#F0F23A'] ,
-      label: {
-        show: true
-      },
-      emphasis: {
-        focus: 'series'
-      },
-      data:[11740000,0]
-    }
-  ]
-};
-echarts.init(document.getElementById('chart1')).setOption(chart1);
-
-
-
-fetch('https://api.flipsidecrypto.com/api/v2/queries/a0d9fadd-6833-4fc8-9c1e-1065592b3c20/data/latest').then(res=>res.json()).then(data=>{
-
-  let selectedProps = data.reduce((acc, curr) => {
-    let { WALLETS:value,TYPE:name } = curr;
-    return [...acc, { value,name }];
-  }, []);
-  
-chart2 = {
-  
-  title: {
-    text: '',
-    subtext: '',
-    left: 'center'
-  },
-  tooltip: {
-    trigger: 'item'
-  },
-  legend: {
-    orient: 'vertical',
-    left: 'right'
-  },
-  series: [
-    {
-      name: '',
-      type: 'pie',
-      radius: ['20%','80%'],
-      
-
-            color: [
-        '#37A2DA',
-        '#32C5E9',
-        '#67E0E3',
-        '#9FE6B8',
-        '#FFDB5C',
-        '#ff9f7f',
-        '#fb7293'],
-      data: selectedProps,
-      emphasis: {
-        itemStyle: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 0, 0, 0.5)'
-        }
-      }
-    }
-  ]
-}
- echarts.init(document.getElementById('chart2')).setOption(chart2);
-})
- 
 
 
 const op = [
@@ -361,3 +225,387 @@ chart5 = {
 echarts.init(document.getElementById('chart5')).setOption(chart5);
 
 
+
+
+
+d3.csv('data4.csv').then(function(datapoints){
+  const newss = datapoints.reduce((t,i)=>{
+  return {...t,dates:[...t.dates,i.date],
+    New_Contractss:[...t.New_Contractss,i.Fee],
+    Total_Contractss:[...t.Total_Contractss,i.Cumulative_Fee],
+    DAILY_TANS:[...t.DAILY_TANS,i.Transactions]}
+  
+  },{dates:[],New_Contractss:[],Total_Contractss:[],DAILY_TANS:[]})
+  
+  
+  chart00 = {
+        title: {
+            text: ''
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: [ 'New Aptos burned as Fee', 'Total Aptos burned as Fee']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+            saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: newss.dates
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+            name: 'New Aptos burned as Fee',
+            type: 'line',
+            //stack: 'Total',
+            data: newss.New_Contractss
+            },
+            {
+            name: 'Total Aptos burned as Fee',
+            type: 'line',
+            data: newss.Total_Contractss
+            }
+        ]
+        };
+  echarts.init(document.getElementById('chart00')).setOption(chart00);
+  
+  
+  
+  
+  chart000 = {
+        title: {
+            text: ''
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: [ 'Daily Transactions']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+            saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: newss.dates
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+            name: 'Daily Transactions',
+            type: 'line',
+            //stack: 'Total',
+            data: newss.DAILY_TANS
+            }
+        ]
+        };
+  echarts.init(document.getElementById('chart000')).setOption(chart000);
+  })
+
+
+
+
+d3.csv('data2.csv').then(function(datapoints){
+  const news = datapoints.reduce((t,i)=>{
+  return {...t,dates:[...t.dates,i.date],
+    new_userss:[...t.new_userss,i.new_users],
+    Total_userss:[...t.Total_userss,i.Total_users]}
+  
+  },{dates:[],new_userss:[],Total_userss:[]})
+  
+  
+  chart1 = {
+        title: {
+            text: ''
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: [ 'New Users', 'Total Users']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+            saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: news.dates
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+            name: 'New Users',
+            type: 'line',
+            //stack: 'Total',
+            data: news.new_userss
+            },
+            {
+            name: 'Total Users',
+            type: 'line',
+            data: news.Total_userss
+            }
+        ]
+        };
+  echarts.init(document.getElementById('chart1')).setOption(chart1);
+  })
+
+
+
+d3.csv('data3.csv').then(function(datapoints){
+  const newss = datapoints.reduce((t,i)=>{
+  return {...t,dates:[...t.dates,i.date],
+    New_Contractss:[...t.New_Contractss,i.New_Contracts],
+    Total_Contractss:[...t.Total_Contractss,i.Total_Contracts]}
+  
+  },{dates:[],New_Contractss:[],Total_Contractss:[]})
+  
+  
+  chart0 = {
+        title: {
+            text: ''
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: [ 'New Contracts', 'Total Contracts']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+            saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: newss.dates
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+            name: 'New Contracts',
+            type: 'line',
+            //stack: 'Total',
+            data: newss.New_Contractss
+            },
+            {
+            name: 'Total Contracts',
+            type: 'line',
+            data: newss.Total_Contractss
+            }
+        ]
+        };
+  echarts.init(document.getElementById('chart0')).setOption(chart0);
+  })
+
+
+
+
+
+
+
+
+d3.csv('data1.csv').then(function(datapoints){
+  let selectedProps = datapoints.reduce((acc, curr) => {
+    let { total_addresses:value,number:name } = curr;
+    return [...acc, { value,name }];
+  }, []);
+  
+chart2 = {
+  
+        title: {
+        text: '',
+        subtext: '',
+        left: 'center'
+        },
+        tooltip: {
+        trigger: 'item'
+        },
+        legend: {
+        orient: 'vertical',
+        left: 'right'
+        },
+        series: [
+        {
+            name: '',
+            type: 'pie',
+            radius: ['20%','80%'],
+            
+
+                color: [
+            '#37A2DA',
+            '#32C5E9',
+            '#67E0E3',
+            '#9FE6B8',
+            '#FFDB5C',
+            '#ff9f7f',
+            '#fb7293'],
+            data: selectedProps,
+            emphasis: {
+            itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+            }
+        }
+        ]
+        }
+ echarts.init(document.getElementById('chart2')).setOption(chart2);
+  })
+  
+
+
+
+
+
+
+d3.csv('data6.csv').then(function(datapoints){
+  let selectedProps = datapoints.reduce((acc, curr) => {
+    let { trxs:value,type:name } = curr;
+    return [...acc, { value,name }];
+  }, []);
+  
+chart22 = {
+  
+        title: {
+        text: '',
+        subtext: '',
+        left: 'center'
+        },
+        tooltip: {
+        trigger: 'item'
+        },
+        legend: {
+        orient: 'vertical',
+        left: 'left'
+        },
+        series: [
+        {
+            name: '',
+            type: 'pie',
+            radius: ['20%','80%'],
+            
+
+                color: [
+            '#37A2DA',
+            '#32C5E9',
+            '#67E0E3',
+            '#9FE6B8',
+            '#FFDB5C',
+            '#ff9f7f',
+            '#fb7293'],
+            data: selectedProps,
+            emphasis: {
+            itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+            }
+        }
+        ]
+        }
+ echarts.init(document.getElementById('chart22')).setOption(chart22);
+  })
+  
+
+
+d3.csv('data5.csv').then(function(datapoints){
+  const newss = datapoints.reduce((t,i)=>{
+  return {...t,dates:[...t.dates,i.date],
+    New_Contractss:[...t.New_Contractss,i.volume],
+    Total_Contractss:[...t.Total_Contractss,i.Cumulative_Volume]}
+  
+  },{dates:[],New_Contractss:[],Total_Contractss:[]})
+  
+  
+  chart11 = {
+        title: {
+            text: ''
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: [ 'Daily Volume of Transactions(Aptos)', 'Total Volume of Transactions (Aptos)']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+            saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: newss.dates
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+            name: 'Daily Volume of Transactions(Aptos)',
+            type: 'line',
+            //stack: 'Total',
+            data: newss.New_Contractss
+            },
+            {
+            name: 'Total Volume of Transactions (Aptos)',
+            type: 'line',
+            data: newss.Total_Contractss
+            }
+        ]
+        };
+  echarts.init(document.getElementById('chart11')).setOption(chart11);
+  })
