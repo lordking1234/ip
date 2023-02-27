@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+    
+    
+  <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Aptos dashboard</title>  <!--#change the title of the page-->
+    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.1/echarts.min.js"></script>
+            <style>
+                 td, th {
+                 text-align: center;
+                 border: 1px solid;  
+                }
+                
+                table {
+                    margin-top: 30px ;
+                  width: 100%;
+                  border-collapse: collapse;
+                  border: 1px solid;  
+                }
+            </style>
+    
+  </head>
+  
+  
+  <body>
+      
+<!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            
+            <a class="navbar-brand" href="https://aptoslabs.com/"> <!--#change-->
+                <h2 style="background:-webkit-linear-gradient(#a09f9f,#3d3d3d );
+                -webkit-background-clip:text;-webkit-text-fill-color:transparent">Aptos Team</h2><!--#change--> 
+            </a><!--#change brand link and title-->
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item active">
+                        <a class="nav-link" href="../../index.html">Home</a>  <!--#change-->
+                </li>
+
+                <li class="nav-item active">
+                        <a class="nav-link" href="../referrence/about.html">Resource</a>  <!--#change-->
+                </li>
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Menu 
+
+
+                </button>
+                <ul class="dropdown-menu" style="border-bottom-right-radius: 5%; border: 3px solid #2e3a46; ">
+                  <li><a href="../tokenomics/about.html" class="dropdown-item side" style="font-weight:bold ;">Tokennomics</a></li>
+                  <li><a href="../team/about.html" class="dropdown-item side" style="font-weight:bold ;">Team</a></li>
+                  <li class="dropdown-item sides">
+                    <p  style="font-weight:bold ; color :#2e3a46; padding-left: 30px;"class="d-block">Airdrop</p>
+                    <ol class="sub-menu">
+                        <li class="collapse show side"><a href="../airdrop/airdrop1/airdrop1.html" style=" color :#2e3a46;" >First round</a></li>
+                        <li class="collapse show side"><a href="../airdrop/airdrop2/airdrop2.html"style=" color :#2e3a46;" >Second round</a></li>
+                    </ol>
+        </ul>
+            </div>
+        </div>
+
+ 
+
+    </nav>
+<raw>
+</raw>
+
+
+
+
+
+<div class="row mt-5" >
+
+                            
+  <!-- Donut left Chart -->
+  <div class="col-md-12  mt-5">
+          <!-- -->
+          <div class="card-header shadow py-3">
+              <h6 class="m-0 font-weight-bold aa"> 
+                <img src="https://www.builtinsf.com/sites/www.builtinsf.com/files/styles/ckeditor_optimize/public/inline-images/aptos.jpeg" 
+                style="padding-bottom: 10px; width: 60% ; height:400px;margin-left: 20% ; padding-top: 20px ; padding-bottom: 20px; border-radius: 10%;" >
+                <h3><code class="ml-5  mr-5">The team behind the blockchain
+                </code></h3>
+                  <p class="ml-5  mr-5 mt-4">The Aptos team is made up of a highly-accomplished team of engineers, researchers, strategists, designers, and builders—all committed to delivering universal and equitable access to decentralization that is capable of scaling for billions of people.
+                    <p class="ml-5 mr-5">Much of the Aptos team is credited with developing the technical innovations that power the Aptos blockchain—including the original creators of the Move language, Move Prover, the BlockSTM parallel execution engine, and Narwhal and Bullshark consensus mechanisms.
+
+
+
+
+
+
+                  </p>
+                </h6>
+          </div>
+
+  </div>
+</div>
+
+<div class="row mt-5" >
+
+                            
+  <!-- Donut left Chart -->
+  <div class="col-md-6  mt-5">
+          <!-- -->
+          <div class="card-header shadow py-3">
+              <h6 class="m-0 font-weight-bold aa"> 
+                <img src="https://media.licdn.com/dms/image/C5603AQGfNMwC_1uytQ/profile-displayphoto-shrink_800_800/0/1645674735037?e=1683158400&v=beta&t=Jx48QeUbPNF0xKjH3X8XC_eorWrE_xQ_y94wKAnWJV0" 
+                style="padding-bottom: 10px; width: 200px ; height:200px;padding-left: 10px ; padding-top: 20px ; border-radius: 50%;" >
+                <h3><code>Avery Ching </code></h3>
+                <p>Co-Founder & CTO In Aptos
+                  </p>
+                  <p class=" shadow p-2">Avery Ching :  I transferred to Punahou School in the middle of kindergarten and continued there throughout high school. After high school, I went to Evanston, Illinois to study computer engineering at Northwestern University. In order to pursue my research interests in parallel computing, I entered graduate school at Northwestern University under Professor Alok Choudhary. I defended my Ph.D in computing engineering on October 5th, 2007 and officially graduated in December 2007.
+
+
+                  </p>
+                </h6>
+                <span class="footer-basic">
+                  <div class="social">
+                          <a  target="_blank" href="https://twitter.com/AveryChing"><i class="icon ion-social-twitter"></i></a>  <!--#change link-->
+                          <a  target="_blank" href="https://www.linkedin.com/in/averyching/"><i class="icon ion-social-linkedin"></i></a>  <!--#change link-->
+                   </div>
+            </span>
+          </div>
+          <div class="card-body">
+              <div class="chart-pie pt-4 justify-content-between" >
+                 <div id="chart2" style="width: 100%;height:250%;"></div>
+
+              </div>
+              <hr>
+
+              <code></code> 
+      </div>
+  </div>
+
+  <div class="col-md-6  mt-5">
+    <!-- -->
+    <div class="card-header shadow py-3"style="height: 600px;">
+        <h6 class="m-0 font-weight-bold aa"> 
+          <img src="https://media.licdn.com/dms/image/C5603AQEUPfM5QW1ocw/profile-displayphoto-shrink_800_800/0/1645679281696?e=1683158400&v=beta&t=0e9F92UZjsj9R6MpA0R3LoQAe4Q92hn5WZD0Wn3hHWA" 
+          style="padding-bottom: 10px; width: 200px ; height:200px;padding-left: 10px ; padding-top: 20px ; border-radius: 50%;" >
+          <h3><code>Mohammad Shaikh</code></h3>
+          <p>Co-Founder & CEO</p>
+          <p class=" shadow p-2">Mo is a 3x founder and expert in going from 0-1 and scaling products. He has been invited to speak at the World Economic Forum at Davos to discuss innovation across sectors. Mo combines his knowledge of building products, fundraising, developing business strategy & scaling teams. He has over a decade of depth in capital markets, private equity, venture capital across US, EU and Middle East markets.
+          </p>
+        </h6>
+        <span class="footer-basic">
+          <div class="social" style="padding-top: 20px;">
+                  <a  target="_blank" href="https://twitter.com/moshaikhs"><i class="icon ion-social-twitter"></i></a>  <!--#change link-->
+                  <a  target="_blank" href="https://www.linkedin.com/in/moalishaikh/"><i class="icon ion-social-linkedin"></i></a>  <!--#change link-->
+           </div>
+    </span>
+    </div>
+    <div class="card-body">
+        <div class="chart-pie pt-4 justify-content-between" >
+           <div id="chart2" style="width: 100%;height:250%;"></div>
+
+        </div>
+        <hr>
+
+        <code></code> 
+</div>
+</div>
+</div>
+
+
+
+
+
+        <div class="row">
+
+                            
+          <!-- Donut left Chart -->
+          <div class="col-md-6 ">
+            <!-- -->
+            <div class="card-header shadow py-3">
+                <h6 class="m-0 font-weight-bold aa"> 
+                  <img src="https://media.licdn.com/dms/image/C4E03AQGAp_HkHb37pQ/profile-displayphoto-shrink_800_800/0/1585116221801?e=1683158400&v=beta&t=54otk358bI_bjXtN__bl8tZlq99NRQ1wt63WDoHuyoY" 
+                  style="padding-bottom: 10px; width: 200px ; height:200px;padding-left: 10px ; padding-top: 20px ; border-radius: 50%;" >
+                  <h3><code>Gerardo Di Giacomo </code></h3>
+                  <p>Security
+                    </p>
+                    <p class=" shadow p-2">Gerardo Di Giacomo : I've been working on internet security since 2002, but my personal interest in it started earlier.
+
+                      My main area of interest and experience is reactive and proactive product security, with focus on application security, response and bug bounties, secure architecture design, threat modeling, and applied cryptography, in a "purple team" fashion. I also matured experience in enterprise security and compliance. 
+  
+  
+                    </p>
+                  </h6>
+                  <span class="footer-basic">
+                    <div class="social">
+                            <a  target="_blank" href="https://twitter.com/gedigi"><i class="icon ion-social-twitter"></i></a>  <!--#change link-->
+                            <a  target="_blank" href="https://www.linkedin.com/in/gedigi/"><i class="icon ion-social-linkedin"></i></a>  <!--#change link-->
+                     </div>
+              </span>
+            </div>
+            <div class="card-body">
+                <div class="chart-pie pt-4 justify-content-between" >
+                   <div id="chart2" style="width: 100%;height:250%;"></div>
+  
+                </div>
+                <hr>
+  
+                <code></code> 
+        </div>
+    </div>
+    <div class="col-md-6 " >
+      <!-- -->
+      <div class="card-header shadow py-3"style="height: 580px;">
+        <h6 class="m-0 font-weight-bold aa"> 
+          <img src="https://media.licdn.com/dms/image/C5603AQHPLId7f1BsqQ/profile-displayphoto-shrink_800_800/0/1645671303689?e=1683158400&v=beta&t=X_pBEzP5J4umqF6Epp_tKgm3IL_s64MvIK_OmVGF36M" 
+          style="padding-bottom: 10px; width: 200px ; height:200px;padding-left: 10px ; padding-top: 20px ; border-radius: 50%;" >
+          <h3><code>Max Kaplan </code></h3>
+          <p>Founding Engineer at Aptos Labs | Ex-Meta
+      
+            </p>
+            <p class=" shadow p-2">Max Kaplan:  I build big things. Always interested in new technologies, companies, and people!
+      
+      
+            </p>
+          </h6>
+          <span class="footer-basic">
+            <div class="social" style="padding-top: 120px;">
+                    <a  target="_blank" href="https://twitter.com/KaplanMax"><i class="icon ion-social-twitter"></i></a>  <!--#change link-->
+                    <a  target="_blank" href="https://www.linkedin.com/in/maxkaplan/"><i class="icon ion-social-linkedin"></i></a>  <!--#change link-->
+             </div>
+      </span>
+      </div>
+      <div class="card-body">
+        <div class="chart-pie pt-4 justify-content-between" >
+           <div id="chart2" style="width: 100%;height:250%;"></div>
+      
+        </div>
+        <hr>
+      
+        <code></code> 
+      </div>
+      </div>
+</div>
+
+
+
+
+<div class="row">
+
+                            
+  <!-- Donut left Chart -->
+  <div class="col-md-6 ">
+    <!-- -->
+    <div class="card-header shadow py-3">
+        <h6 class="m-0 font-weight-bold aa"> 
+          <img src="https://media.licdn.com/dms/image/C4D03AQHgXa-BuGY_0w/profile-displayphoto-shrink_800_800/0/1549504197752?e=1683158400&v=beta&t=89O1CWzRESd3TodbdXI1sX4Czs9iF1P3wypwl3Y3xYA" 
+          style="padding-bottom: 10px; width: 200px ; height:200px;padding-left: 10px ; padding-top: 20px ; border-radius: 50%;" >
+          <h3><code>Ariana Gianacopoulos </code></h3>
+          <p>Marketing 
+            </p>
+            <p class="  p-2"> 
+
+
+            </p>
+          </h6>
+          <span class="footer-basic">
+            <div class="social">
+                    <a  target="_blank" href="https://twitter.com/rianagia"><i class="icon ion-social-twitter"></i></a>  <!--#change link-->
+                    <a  target="_blank" href="https://www.linkedin.com/in/ariana-a-gianacopoulos/"><i class="icon ion-social-linkedin"></i></a>  <!--#change link-->
+             </div>
+      </span>
+    </div>
+    <div class="card-body">
+        <div class="chart-pie pt-4 justify-content-between" >
+           <div id="chart2" style="width: 100%;height:250%;"></div>
+
+        </div>
+        <hr>
+
+        <code></code> 
+</div>
+</div>
+
+<div class="col-md-6 ">
+  <!-- -->
+  <div class="card-header shadow py-3">
+      <h6 class="m-0 font-weight-bold aa"> 
+        <img src="https://media.licdn.com/dms/image/C5603AQFMY2aCADUl-Q/profile-displayphoto-shrink_800_800/0/1660156846672?e=1683158400&v=beta&t=kXDhwIIhEM0FsXktvOdiwLTCmSmEGfoadi5pewRlo40" 
+        style="padding-bottom: 10px; width: 200px ; height:200px;padding-left: 10px ; padding-top: 20px ; border-radius: 50%;" >
+        <h3><code>Mohammed Ahmed </code></h3>
+        <p>Recruiting
+          </p>
+          <p class="  p-2">
+
+
+          </p>
+        </h6>
+        <span class="footer-basic">
+          <div class="social">
+                  <a  target="_blank" href="https://twitter.com/consultmo"><i class="icon ion-social-twitter"></i></a>  <!--#change link-->
+                  <a  target="_blank" href="https://www.linkedin.com/in/motalent/"><i class="icon ion-social-linkedin"></i></a>  <!--#change link-->
+           </div>
+    </span>
+  </div>
+  <div class="card-body">
+      <div class="chart-pie pt-4 justify-content-between" >
+         <div id="chart2" style="width: 100%;height:250%;"></div>
+
+      </div>
+      <hr>
+
+      <code></code> 
+</div>
+</div>
+
+<div style="text-align: center;"><h3><code>And many more </code></h3> </div>
+<div style="text-align: center; margin-bottom: 100px;"><a href="https://www.linkedin.com/search/results/people/?currentCompany=%5B%2279119792%22%5D&origin=COMPANY_PAGE_CANNED_SEARCH&sid=Z05"> more info</a> </div>
+
+
+
+
+    
+    
+    
+    
+    <div class="footer-basic">
+        <footer >
+            <div class="social">
+                    <a  target="_blank" href="https://github.com/lordking1234"><i class="icon ion-social-github"></i></a>  <!--#change link -->
+                    <a  target="_blank" href="https://twitter.com/MRSoltanii"><i class="icon ion-social-twitter"></i></a>  <!--#change link-->
+                    <a  target="_blank" href="https://www.linkedin.com/in/mohammad-reza-soltani-62009523b/"><i class="icon ion-social-linkedin"></i></a>  <!--#change link-->
+             </div>
+             <ul class="list-inline">
+                    <li class="list-inline-item"><a  target="_blank" href="https://flipsidecrypto.xyz/">Flipside </a></li><!--#change link & text-->
+                    <li class="list-inline-item"><a  target="_blank" href="https://metricsdao.xyz/">Metrics dao</a></li><!--#change link & text-->
+                    <li class="list-inline-item"><div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Buy me a coffee 🍵
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><p class="dropdown-item" style="font-weight:bold ; ">Thanks you 💗</p></li>
+                          <li><p class="dropdown-item">
+                            <button onclick="myFunction()" style ="border: none; font-weight:400 ; ">
+                                  Click to copy metamask address <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"></path>
+                                    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"></path>
+                                    </svg>
+                            </button>
+                        </ul>
+                      </div></li><!--#change link & text-->
+             </ul>
+             <p class="copyright">Built by Lordking 👑</p> <!--#change-->
+        </footer>
+    </div>
+</footer>    
+<!--copy to clipbord-->
+                    <input type="text" value="0x7af2d9a872cbb1bc19fcbd75a4241776ab63dcca" id="myInput" style="visibility :hidden">
+                    <script>
+                                function myFunction() {
+                                var copyText = document.getElementById("myInput");
+                                copyText.select();
+                                copyText.setSelectionRange(0, 99999); 
+                                navigator.clipboard.writeText(copyText.value);
+                                }
+                    </script>
+
+
+
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="stylesheet" href="about.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.1/echarts.min.js"></script>
+         <script src="about.css"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    
+    
+  </body>
+</html> 
