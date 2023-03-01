@@ -331,7 +331,7 @@ fetch('https://api.geniidata.com/lordking/api/v1/datasource/12576/results?limit=
           series: [{
           name: 'Transactions',
           type: 'area',
-          data: newss.New_smart_contracts
+          data: newss.Transactionss
         }],
           chart: {
           height: 350,
