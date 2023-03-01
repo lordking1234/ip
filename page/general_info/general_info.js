@@ -327,46 +327,68 @@ fetch('https://api.geniidata.com/lordking/api/v1/datasource/12576/results?limit=
          //-----------------------------------------------------------------------------------------
 
   
-  
-  chart000 = {
-        title: {
-            text: ''
+          var chart000 = {
+          series: [{
+          name: 'Transactions',
+          type: 'area',
+          data: newss.New_smart_contracts
+        }],
+          chart: {
+          height: 350,
+          type: 'line',
+          stacked: false,
+        },
+        stroke: {
+          width: [0, 2, 5],
+          curve: 'smooth'
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: '50%'
+          }
+        },
+        
+        fill: {
+          opacity: [0.85, 0.25, 1],
+          gradient: {
+            inverseColors: false,
+            shade: 'light',
+            type: "vertical",
+            opacityFrom: 0.85,
+            opacityTo: 0.55,
+            stops: [0, 100, 100, 100]
+          }
+        },
+        labels: newss.dates,
+        markers: {
+          size: 0
+        },
+        xaxis: {
+          type: 'datetime'
+        },
+        yaxis: {
+          title: {
+            text: 'Trxs',
+          },
+          min: 0
         },
         tooltip: {
-            trigger: 'axis'
-        },
-        legend: {
-            data: [ 'Daily Transactions']
-        },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        toolbox: {
-            feature: {
-            saveAsImage: {}
+          shared: true,
+          intersect: false,
+          y: {
+            formatter: function (y) {
+              if (typeof y !== "undefined") {
+                return y.toFixed(0) + " Trxs";
+              }
+              return y;
+        
             }
-        },
-        xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            data: newss.dates
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [
-            {
-            name: 'Daily Transactions',
-            type: 'line',
-            //stack: 'Total',
-            data: newss.Transactionss
-            }
-        ]
+          }
+        }
         };
-  echarts.init(document.getElementById('chart000')).setOption(chart000);
+
+        var chart = new ApexCharts(document.getElementById("chart000"), chart000);
+        chart.render();
   
   
         //-----------------------------------------------------------------------------------------
