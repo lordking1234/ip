@@ -9,6 +9,7 @@ return (Math.abs(Number(labelValue) / 1.0e+3).toFixed(2)) + " K"
 
 
 
+
 fetch('https://api.geniidata.com/lordking/api/v1/datasource/12577/results?limit=20&offset=0', {
     method: 'GET', 
     headers: {
@@ -26,6 +27,7 @@ document.getElementById("third-box").innerHTML = increment(data.data.list[0].wal
 document.getElementById("fourth-box").innerHTML = increment(data.data.list[0].aptos)
 
 })
+
 
 
 
