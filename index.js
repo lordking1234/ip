@@ -8,20 +8,23 @@ return (Math.abs(Number(labelValue) / 1.0e+3).toFixed(2)) + " K"
 }
 
 
-fetch('https://api.flipsidecrypto.com/api/v2/queries/f4a144b5-8948-45bd-bb40-74b16050d0e7/data/latest').then(res=>res.json()).then(data=>{
-  const newData = data.reduce((t,i)=>{
-  return {...t,
-    trans:[...t.trans,i.TRANSACTIONS],
-    user:[...t.user,i.ADDRESS],
-    fee:[...t.fee,i.FEE],
-    gas:[...t.gas,i.GAS_PRICS]
-  }
 
-},{trans:[],user:[],fee:[],gas:[]})
-document.getElementById("first-box").innerHTML = increment(newData.trans)
-document.getElementById("second-box").innerHTML = increment(newData.user)
-document.getElementById("third-box").innerHTML = increment(newData.fee)
-document.getElementById("fourth-box").innerHTML = (Math.floor((newData.gas)*1000)/1000)
+fetch('https://api.geniidata.com/lordking/api/v1/datasource/12577/results?limit=20&offset=0', {
+    method: 'GET', 
+    headers: {
+        'Content-Type': 'application/json',
+        'api-key': 'a94fdce0-b66c-11ed-9d24-019c684cbdd6'
+    }
+})
+.then(response => response.json())
+.then(data =>{
+
+
+document.getElementById("first-box").innerHTML = increment(data.data.list[0].trxs)
+document.getElementById("second-box").innerHTML = increment(data.data.list[0].Blocks)
+document.getElementById("third-box").innerHTML = increment(data.data.list[0].wallet)
+document.getElementById("fourth-box").innerHTML = increment(data.data.list[0].aptos)
+
 })
 
 
