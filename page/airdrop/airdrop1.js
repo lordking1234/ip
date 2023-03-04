@@ -14,10 +14,10 @@ return (Math.abs(Number(labelValue) / 1.0e+3).toFixed(2)) + " K"
 
 document.getElementById("first-box").innerHTML = increment(111809)
 document.getElementById("fourth-box").innerHTML = increment(111721)
-document.getElementById("sixth-box").innerHTML = increment(110235)
+document.getElementById("sixth-box").innerHTML = increment(124828 )
 document.getElementById("third-box").innerHTML = increment(21394500)
 document.getElementById("fifth-box").innerHTML = (150)
-document.getElementById("second-box").innerHTML = increment(20076150)
+document.getElementById("second-box").innerHTML = increment(23454750)
 document.getElementById("seventh-box").innerHTML = (300)
 document.getElementById("eighth-box").innerHTML = (191)
 document.getElementById("ninth-box").innerHTML = (150)
@@ -29,79 +29,70 @@ document.getElementById("ninth-box").innerHTML = (150)
 
 
 
+const studio1 = ["Claimers", "Remaining Claimers", "Eligible Users"];
+const count1 = [ 111720,13108, 124828 ];
 
- 
-chart1 = {
-tooltip: {
-  trigger: 'axis',
-  axisPointer: {
-    type: 'shadow' 
-  }
-},
-legend: {
-  left: 'left' 
-},
-grid: {
-  left: '3%',
-  right: '4%',
-  bottom: '3%',
-  containLabel: true
-},
-xAxis: {
-  type: 'value'
-},
-yAxis: {
-  type: 'category',
-  data: []
-},
-series: [
-  {
-    name: 'Eligible Claimer',
+var chart11111 = {
+  series: [{
+    data: count1
+  }],
+    chart: {
     type: 'bar',
-    stack: 'total',
-    color:['#FD4592'] ,
-    label: {
-      show: true
-    },
-    emphasis: {
-      focus: 'series'
-    },
-    data:[0,110235,0,0]
+    height: 200 ,
+    width :510  
   },
-  {
-    name: 'Remaining Claimer',
-    type: 'bar',
-    stack: 'total',
-    color:['#ED93B9'] ,
-    label: {
-      show: true
-    },
-    emphasis: {
-      focus: 'series'
-    },
-    data:[0,0,0,0]
+  annotations: {
+    xaxis: [{
+      x: 10,
+      borderColor: '#00E396',
+      label: {
+        borderColor: '#00E396',
+        style: {
+          color: '#fff',
+          background: '#00E396',
+        },
+        text: '',
+      }
+    }],
+    yaxis: [{
+      y: '',
+      y2: '',
+      label: {
+        text: ''
+      }
+    }]
   },
-  {
-    name: 'Total Claimer',
-    type: 'bar',
-    stack: 'total',
-    color:['#F0F23A'] ,
-    label: {
+  plotOptions: {
+    bar: {
+      horizontal: true
+    }
+  },
+  dataLabels: {
+    enabled: true
+  },
+  xaxis: {
+    categories:studio1,
+  },
+  grid: {
+    xaxis: {
+      lines: {
+        show: true
+      }
+    }
+  },
+  yaxis: {
+    reversed: true,
+    axisTicks: {
       show: true
-    },
-    emphasis: {
-      focus: 'series'
-    },
-    data:[0,0,0,111721]
+    }
   }
-]
-};
-echarts.init(document.getElementById('chart1')).setOption(chart1);
+  };
+
+var chart = new ApexCharts(document.getElementById("chart1"), chart11111);
+chart.render();
 
 
-
-
-chart2 = {
+var chart2 = {
 
 title: {
   text: '',
