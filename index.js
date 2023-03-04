@@ -35,38 +35,6 @@ document.getElementById("fourth-box").innerHTML = increment(data.data.list[0].ap
 
 
 
-fetch('https://api.flipsidecrypto.com/api/v2/queries/9ea90485-b4a3-4b25-8428-49012324d477/data/latest').then(res=>res.json()).then(data=>{
-  const newData = data.reduce((t,i)=>{
-  return {...t,
-    date:[...t.date,i.DATE],
-    tvl:[...t.tvl,i.TVL_USD]
-  }
-
-},{date:[],tvl:[],fee:[],gas:[]})
-
-
-chart2 = {
-  xAxis: {
-    type: 'category',
-    data: newData.date
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: newData.tvl,
-      type: 'line',
-      color :'#2e3a46' ,
-      smooth: true
-    }
-  ]
-};
-echarts.init(document.getElementById('sixth-box')).setOption(chart2);
-
-})
-
-
 
 fetch('https://api.flipsidecrypto.com/api/v2/queries/ed191a52-2fa3-49af-a3a2-3e770c85bd78/data/latest').then(res=>res.json()).then(data=>{
   let selectedProps = data.reduce((acc, curr) => {
