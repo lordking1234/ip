@@ -810,3 +810,4 @@ chart44 = {
    echarts.init(document.getElementById('chart44')).setOption(chart44);
    
     })
+
